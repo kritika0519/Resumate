@@ -1,17 +1,15 @@
 package com.resumeanalyzer.controller;
 
-import com.resumeanalyzer.dto.AnalysisResponse;
-import com.resumeanalyzer.dto.AnalysisSummaryResponse;
-import com.resumeanalyzer.service.PdfReportService;
-import com.resumeanalyzer.service.ResumeAnalysisService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.resumeanalyzer.dto.AnalysisResponse;
+import com.resumeanalyzer.dto.AnalysisSummaryResponse;
+import com.resumeanalyzer.service.PdfReportService;
+import com.resumeanalyzer.service.ResumeAnalysisService;
+
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class ResumeAnalysisController {
 
     private final ResumeAnalysisService resumeAnalysisService;
@@ -35,9 +39,11 @@ public class ResumeAnalysisController {
 
     @PostMapping("/analyze")
     public AnalysisResponse analyzeResume(@RequestParam("resume") MultipartFile resume,
-                                          @RequestParam(value = "jobDescription", required = false) String jobDescription,
-                                          @RequestParam(value = "jobDescriptionFile", required = false) MultipartFile jobDescriptionFile) throws IOException {
-        // Multipart upload keeps the frontend simple and works well for Spring Boot deployment.
+            @RequestParam(value = "jobDescription", required = false) String jobDescription,
+            @RequestParam(value = "jobDescriptionFile", required = false) MultipartFile jobDescriptionFile)
+            throws IOException {
+        // Multipart upload keeps the frontend simple and works well for Spring Boot
+        // deployment.
         return resumeAnalysisService.analyze(resume, jobDescription, jobDescriptionFile);
     }
 
