@@ -1,96 +1,206 @@
-# 📄 AI Resume Analyzer
+# 📄 Resumate - AI Resume Analyzer & ATS Checker
 
-> **AI-powered resume analysis tool** — Upload your resume, paste a job description, and instantly get ATS compatibility scoring, skill matching, AI suggestions, and a professional PDF report.
+> **Intelligent resume analysis platform** — Upload your resume, paste a job description, and instantly get ATS compatibility scoring, skill matching, AI-powered suggestions, and professional PDF reports.
+
+**🚀 Live Demo:** https://resumate-zeta-lac.vercel.app/
 
 [![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green.svg)](https://www.mongodb.com/cloud/atlas)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000.svg)](https://vercel.com)
+[![Render](https://img.shields.io/badge/Backend-Render-46E3B7.svg)](https://render.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## ✨ Features
+---
 
-- 📊 **ATS Scoring** — Get a realistic ATS (Applicant Tracking System) score
-- 🎯 **Job Fit Analysis** — See how well your resume matches the job description
-- 🤖 **AI-Powered Insights** — Intelligent suggestions powered by Google Gemini API
-- 📝 **Skill Matching** — Identify matched and missing skills
-- 🔍 **Keyword Analysis** — Analyze keyword frequency and impact
-- ✅ **Format Checking** — Get ATS formatting warnings and tips
-- 💼 **PDF Reports** — Download professional analysis reports
-- 📜 **History** — Track all your analyses
-- 🎨 **Modern UI** — Responsive Bootstrap 5 interface
+## 📊 Overview
+
+Resumate helps job seekers optimize their resumes for **Applicant Tracking Systems (ATS)**. Get:
+
+- ✅ ATS compatibility scores (0-100)
+- ✅ Job fit analysis based on job descriptions
+- ✅ AI-powered improvement suggestions
+- ✅ Skill gap analysis
+- ✅ ATS formatting warnings
+- ✅ Professional PDF reports
+- ✅ Analysis history tracking
+
+---
+
+## ✨ Key Features
+
+| Feature                 | Description                                       |
+| ----------------------- | ------------------------------------------------- |
+| 📊 **ATS Scoring**      | Realistic ATS compatibility score (0-100)         |
+| 🎯 **Job Fit Analysis** | Match your resume against job descriptions        |
+| 🤖 **AI Suggestions**   | Google Gemini-powered improvement recommendations |
+| 📝 **Skill Matching**   | Identifies matched and missing skills             |
+| 🔍 **Keyword Analysis** | Analyzes keyword frequency and impact             |
+| ✅ **Format Checking**  | Detects ATS-unfriendly formatting                 |
+| 💼 **PDF Reports**      | Download professional analysis reports            |
+| 📜 **Analysis History** | View all previous analyses                        |
+| 🎨 **Modern UI**        | Responsive, intuitive interface                   |
+
+---
 
 ## 🛠️ Tech Stack
 
-| Layer              | Technology                                      |
-| ------------------ | ----------------------------------------------- |
-| **Backend**        | Java 17, Spring Boot 3.3.5, Spring Data MongoDB |
-| **Database**       | MongoDB Atlas (Cloud)                           |
-| **PDF Processing** | Apache PDFBox 3.0.3                             |
-| **Frontend**       | HTML5, CSS3, JavaScript, Bootstrap 5            |
-| **AI**             | Google Gemini API (optional, with fallback)     |
+### **Frontend**
 
-## 📋 Prerequisites
+- HTML5, CSS3, JavaScript
+- Bootstrap 5 (responsive design)
+- **Deployed on:** Vercel
 
-- ✅ Java 17+
+### **Backend**
+
+- Java 17
+- Spring Boot 3.3.5
+- Spring Data MongoDB
+- Apache PDFBox 3.0.3 (PDF processing)
+- **Deployed on:** Render (Docker container)
+
+### **Database**
+
+- MongoDB Atlas (Cloud - free tier)
+- Collection: `resume_analyses`
+
+### **AI**
+
+- Google Gemini API 1.5 Flash (optional)
+- Rule-based fallback if API not configured
+
+### **Deployment Architecture**
+
+```
+┌─────────────────────┐
+│   User's Browser    │
+└──────────┬──────────┘
+           │ https://resumate-zeta-lac.vercel.app
+           ▼
+┌─────────────────────┐
+│  Vercel (Frontend)  │  ◄── HTML, CSS, JS
+│ - React/Static App  │
+└──────────┬──────────┘
+           │ /api/* calls
+           ▼
+┌─────────────────────┐
+│ Render (Backend)    │  ◄── Java Spring Boot API
+│ - Docker Container  │
+│ - Port 8080         │
+└──────────┬──────────┘
+           │ TCP 27017 (MongoDB driver)
+           ▼
+┌─────────────────────┐
+│ MongoDB Atlas       │  ◄── Cloud Database
+│ - resumeats DB      │
+└─────────────────────┘
+```
+
+---
+
+## 🚀 WHICH LINK TO USE?
+
+### **👉 For Users / Public Demo:**
+
+# https://resumate-zeta-lac.vercel.app/
+
+**This is your complete application.** It includes everything:
+
+- Frontend UI
+- Automatic backend API calls
+- Analysis history
+- PDF reports
+
+### **For API Access Only (Developers):**
+
+- Backend API: https://resumate-backend-xy8b.onrender.com
+- Health Check: https://resumate-backend-xy8b.onrender.com/api/health
+- GitHub Repo: https://github.com/kritika0519/Resumate
+
+---
+
+## 📋 Prerequisites (For Local Development)
+
+- ✅ Java 17 or higher
 - ✅ Maven 3.6+
-- ✅ MongoDB Atlas account (free tier available)
-- ✅ (Optional) Google Gemini API key
+- ✅ MongoDB Atlas account (free tier: https://www.mongodb.com/cloud/atlas)
+- ✅ (Optional) Google Gemini API key (free: https://aistudio.google.com)
 
-## 🚀 Quick Start
+---
 
-### 1. Clone the Repository
+## 🏃 Quick Start - Local Development
+
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/ai-resume-analyzer.git
-cd ai-resume-analyzer
+git clone https://github.com/kritika0519/Resumate.git
+cd Resumate
 ```
 
 ### 2. Setup MongoDB Atlas
 
-1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a free cluster
-3. Create a database user with a strong password
-4. Add your IP address to Network Access
-5. Create database: `resume_analyzer_db`
-6. Copy the connection string (Java driver format)
+1. Create free account: https://www.mongodb.com/cloud/atlas
+2. Create a cluster (free tier available)
+3. Create database user with strong password
+4. Network Access → Add IP `0.0.0.0/0` (for any IP)
+5. Create database: `resumeats`
+6. Copy connection string (choose "Java" driver format)
 
-### 3. Configure Environment Variables
+### 3. Set Environment Variables
 
-Create a `.env` file in the project root:
-
-```env
-MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/resume_analyzer_db?retryWrites=true&w=majority&appName=Cluster0
-GEMINI_API_KEY=your_api_key_here
-FRONTEND_URL=http://localhost:3000
-```
-
-**Or set in PowerShell:**
+**PowerShell:**
 
 ```powershell
-$env:MONGODB_URI="your_mongodb_connection_string"
-$env:GEMINI_API_KEY="your_gemini_api_key"
+$env:MONGODB_URI="mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/resumeats?retryWrites=true&w=majority&appName=Cluster0"
+$env:GEMINI_API_KEY="your_gemini_api_key_optional"
 ```
 
-### 4. Run the Application
+**Or create `.env` file in project root:**
+
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/resumeats?retryWrites=true&w=majority&appName=Cluster0
+GEMINI_API_KEY=your_api_key_here
+```
+
+### 4. Run Application
 
 ```bash
-mvn spring-boot:run
+mvn clean spring-boot:run
 ```
 
-The app starts at: **http://localhost:8080**
+Application starts at: **http://localhost:8080**
 
-Check health: **http://localhost:8080/api/health**
+Test locally:
+
+- http://localhost:8080/ → Frontend
+- http://localhost:8080/api/health → Health check
+
+---
 
 ## 📡 API Endpoints
 
-### Upload & Analyze Resume
+All endpoints are accessible at `https://resumate-backend-xy8b.onrender.com` (production) or `http://localhost:8080` (local).
+
+### 1. Health Check
+
+```http
+GET /api/health
+```
+
+**Response:**
+
+```json
+{ "status": "ok" }
+```
+
+### 2. Upload & Analyze Resume
 
 ```http
 POST /api/analyze
 Content-Type: multipart/form-data
 
 Parameters:
-- resume (file): PDF file of resume [Required]
+- resume (file): PDF file [Required] Max 8MB
 - jobDescription (text): Job description text [Optional]
 ```
 
@@ -99,176 +209,361 @@ Parameters:
 ```json
 {
   "id": "507f1f77bcf86cd799439011",
-  "fileName": "resume.pdf",
+  "fileName": "john_resume.pdf",
   "atsScore": 78,
   "fitLevel": "Good",
   "matchedSkills": ["Java", "Spring Boot", "MongoDB"],
   "missingSkills": ["Docker", "Kubernetes"],
+  "keywordInsights": "Resume contains 45 relevant keywords",
   "aiSuggestions": [
-    "Add Docker experience to your resume",
-    "Highlight cloud deployment skills"
+    "Add Docker/container experience",
+    "Include cloud deployment skills",
+    "Expand on leadership experience"
   ],
+  "sectionChecks": "All required sections present",
+  "formattingWarnings": "Consider using bullet points for better ATS parsing",
   "createdAt": "2024-05-24T10:30:00Z"
 }
 ```
 
-### Get Analysis by ID
+### 3. Get Analysis by ID
 
 ```http
 GET /api/analysis/{id}
 ```
 
-### Download PDF Report
+**Response:** Full analysis object
+
+### 4. Download PDF Report
 
 ```http
 GET /api/analysis/{id}/report
 ```
 
-### View Analysis History (Last 10)
+**Response:** PDF file download
+
+### 5. View Analysis History (Last 10)
 
 ```http
 GET /api/history
 ```
 
-### Health Check
+**Response:**
 
-```http
-GET /api/health
+```json
+[
+  {
+    "id": "507f1f77bcf86cd799439011",
+    "fileName": "resume.pdf",
+    "atsScore": 78,
+    "fitLevel": "Good",
+    "createdAt": "2024-05-24T10:30:00Z"
+  },
+  ...
+]
 ```
+
+---
 
 ## 🏗️ Project Structure
 
 ```
-ai-resume-analyzer/
+Resumate/
 ├── src/main/java/com/resumeanalyzer/
-│   ├── controller/          # REST API endpoints
-│   ├── service/             # Business logic
-│   ├── model/               # MongoDB documents
-│   ├── repository/          # Data access
-│   └── dto/                 # Data transfer objects
+│   ├── ResumeAnalyzerApplication.java      # Spring Boot entry point
+│   ├── controller/
+│   │   └── ResumeAnalysisController.java   # REST API endpoints (@CrossOrigin enabled)
+│   ├── service/
+│   │   ├── ResumeAnalysisService.java      # Business logic
+│   │   ├── PdfTextExtractorService.java    # PDF text extraction
+│   │   ├── PdfReportService.java           # PDF report generation
+│   │   ├── AiSuggestionService.java        # AI suggestions (Gemini)
+│   │   ├── SkillMatcherService.java        # Skill matching logic
+│   │   └── ResumeInsightService.java       # Analysis insights
+│   ├── model/
+│   │   └── ResumeAnalysis.java             # MongoDB @Document entity
+│   ├── repository/
+│   │   └── ResumeAnalysisRepository.java   # MongoRepository data access
+│   └── dto/
+│       ├── AnalysisResponse.java           # API response DTOs
+│       └── AnalysisSummaryResponse.java
 ├── src/main/resources/
-│   ├── application.properties  # Spring Boot config
-│   └── static/              # Frontend files
-├── frontend/                # React/Vue frontend (optional)
-├── pom.xml                  # Maven dependencies
-└── README.md
+│   ├── application.properties               # Spring Boot config
+│   ├── static/
+│   │   ├── index.html                      # Frontend UI
+│   │   ├── css/styles.css
+│   │   └── js/app.js
+├── pom.xml                                 # Maven dependencies
+├── Dockerfile                              # Docker build for Render
+├── README.md                               # This file
+└── database-schema.sql                     # MongoDB schema reference
 ```
 
-## 🔧 Configuration Files
+---
 
-- **`application.properties`** — Spring Boot configuration
-- **`.env.example`** — Environment variables template
-- **`.gitignore`** — Git exclude patterns
-- **`pom.xml`** — Maven dependencies
+## 🔧 Key Classes & Methods
 
-## 📦 Build & Deploy
+### **ResumeAnalysisController.java**
 
-### Local Build
+REST API entry point with CORS support for Vercel frontend.
+
+**Endpoints:**
+
+- `POST /api/analyze` - Upload and analyze resume
+- `GET /api/history` - Get last 10 analyses
+- `GET /api/analysis/{id}` - Get specific analysis
+- `GET /api/analysis/{id}/report` - Download PDF report
+- `GET /api/health` - Health check
+
+### **ResumeAnalysisService.java**
+
+Core business logic for resume analysis.
+
+**Methods:**
+
+- `analyze(file, jobDescription)` - Main analysis workflow
+- `history()` - Retrieve analysis history
+- `findById(id)` - Find analysis by ID
+- `generatePdfReport(analysis)` - Generate PDF
+
+**Flow:**
+
+1. Extract text from PDF
+2. Match skills against predefined list
+3. Generate AI suggestions (if Gemini API configured)
+4. Calculate ATS score
+5. Save to MongoDB
+6. Return results
+
+### **PdfTextExtractorService.java**
+
+Extracts text from PDF files using Apache PDFBox.
+
+**Methods:**
+
+- `extractText(multipartFile)` - Extract text from PDF
+- Handles parsing and text cleaning
+
+### **SkillMatcherService.java**
+
+Matches resume skills against job description and predefined database.
+
+**Features:**
+
+- Skill extraction from resume text
+- Job description skill requirements
+- Matched vs. missing skills
+- Skill suggestions
+
+---
+
+## 📊 MongoDB Database Schema
+
+**Database:** `resumeats`
+**Collection:** `resume_analyses`
+
+**Document Structure:**
+
+```json
+{
+  "_id": "ObjectId",
+  "fileName": "resume.pdf",
+  "extractedText": "Full resume text...",
+  "atsScore": 78,
+  "fitLevel": "Good",
+  "matchedSkills": ["Java", "Spring Boot"],
+  "missingSkills": ["Docker"],
+  "sectionChecks": "All sections present",
+  "formattingWarnings": "Use bullet points",
+  "keywordInsights": "45 relevant keywords found",
+  "aiSuggestions": ["Suggestion 1", "Suggestion 2"],
+  "suggestedSummary": "Professional summary suggestion",
+  "suggestedBullets": "Sample bullet points",
+  "strengths": "Your strongest areas",
+  "weakAreas": "Areas to improve",
+  "improvements": "Specific improvement suggestions",
+  "createdAt": "2024-05-24T10:30:00Z"
+}
+```
+
+---
+
+## 🌐 Deployment
+
+### **Frontend Deployment (Vercel)**
+
+1. Push code to GitHub
+2. Connect Vercel to GitHub repo
+3. Vercel automatically deploys on every push
+4. Configured in `frontend/vercel.json` to proxy `/api/*` calls to Render
+
+**Current:** https://resumate-zeta-lac.vercel.app/
+
+### **Backend Deployment (Render)**
+
+1. Create `Dockerfile` (multi-stage Maven + JRE build)
+2. Push to GitHub
+3. Connect Render to GitHub repo
+4. Render builds Docker image automatically
+5. Set environment variables:
+   - `MONGODB_URI` - MongoDB Atlas connection string
+   - `GEMINI_API_KEY` - (optional) Google Gemini API key
+
+**Current:** https://resumate-backend-xy8b.onrender.com
+
+**Health Check:** Render checks `/api/health` every 30 seconds
+
+### **Database Deployment (MongoDB Atlas)**
+
+Already running on MongoDB cloud infrastructure. No manual deployment needed.
+
+**Database:** `resumeats`
+
+---
+
+## 🔑 Environment Variables
+
+### Required for Backend
+
+```env
+# MongoDB Connection String (REQUIRED)
+MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/resumeats?retryWrites=true&w=majority&appName=Cluster0
+
+# Google Gemini API Key (OPTIONAL - AI suggestions work without it)
+GEMINI_API_KEY=your_api_key_here
+
+# Server Port (OPTIONAL - defaults to 8080)
+PORT=8080
+```
+
+### Where to Set:
+
+- **Local Development:** PowerShell or `.env` file
+- **Render:** Environment variables in Dashboard → Settings
+- **Frontend (Vercel):** `frontend/config.js` has API URL
+
+---
+
+## 🛠️ Building & Testing
+
+### Build Locally
 
 ```bash
 mvn clean package
 ```
 
-Compiled JAR: `target/ai-resume-analyzer-1.0.0.jar`
-
-### Run JAR Locally
+### Run Tests
 
 ```bash
-java -jar target/ai-resume-analyzer-1.0.0.jar
+mvn test
 ```
 
-### Deploy to Render (Backend)
-
-1. Push to GitHub
-2. Go to [Render.com](https://render.com)
-3. Create new Web Service
-4. Connect GitHub repo
-5. Set environment variables:
-   - `MONGODB_URI`
-   - `GEMINI_API_KEY`
-   - `FRONTEND_URL`
-6. Build: `mvn clean package -DskipTests`
-7. Start: `java -jar target/ai-resume-analyzer-1.0.0.jar`
-
-### Deploy to Vercel (Frontend)
-
-1. Connect GitHub repo to [Vercel](https://vercel.com)
-2. Set root directory to `frontend/`
-3. Deploy!
-
-## 🔐 Security Notes
-
-- **Never commit `.env`** — Only `.env.example` is in git
-- **Change MongoDB password** before deploying to production
-- **Secure API keys** — Use environment variables, never hardcode
-- **HTTPS only** — Use HTTPS in production deployments
-
-## 📚 API Testing
-
-### Using cURL
+### Build Docker Image
 
 ```bash
-# Test health check
-curl http://localhost:8080/api/health
-
-# Upload resume (with file)
-curl -X POST http://localhost:8080/api/analyze \
-  -F "resume=@resume.pdf" \
-  -F "jobDescription=Python Developer wanted with 5+ years experience"
+docker build -t resumate:latest .
+docker run -p 8080:8080 -e MONGODB_URI="your_uri" resumate:latest
 ```
-
-### Using Postman
-
-1. Import the API endpoints above
-2. Set `http://localhost:8080` as base URL
-3. Upload a PDF resume file
-4. Send request and check response
-
-## 🐛 Troubleshooting
-
-| Issue                      | Solution                                                           |
-| -------------------------- | ------------------------------------------------------------------ |
-| MongoDB connection error   | Verify MONGODB_URI and add your IP to MongoDB Atlas Network Access |
-| Port 8080 in use           | Change `server.port=9090` in `application.properties`              |
-| Maven build fails          | Ensure Java 17+ with `java -version`                               |
-| PDF upload fails           | Check file size limit (max 8MB in `application.properties`)        |
-| AI suggestions not working | GEMINI_API_KEY is optional; app uses rule-based fallback           |
-
-## 📝 Example Workflow
-
-1. **Open** http://localhost:8080
-2. **Upload** your resume (PDF)
-3. **Paste** job description (optional)
-4. **Click** "Analyze"
-5. **Review** instant ATS score and recommendations
-6. **Download** PDF report
-
-## 🤝 Contributing
-
-Found a bug or want to improve? Feel free to:
-
-1. Fork the repo
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m "Add amazing feature"`
-4. Push: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License — see [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Spring Boot** — Framework foundation
-- **MongoDB** — Cloud database
-- **Apache PDFBox** — PDF processing
-- **Google Gemini** — AI suggestions
-- **Bootstrap 5** — Frontend styling
-
-## 📧 Support
-
-Have questions? Open an issue on GitHub or contact the maintainers.
 
 ---
 
-**Made with ❤️ for job seekers**
+## 🐛 Troubleshooting
+
+### Issue: "Analysis Failed" or 500 Error
+
+**Causes:**
+
+- MongoDB connection string incorrect
+- MongoDB user credentials wrong
+- Database `resumeats` doesn't exist
+- User lacks read/write permissions
+
+**Solution:**
+
+1. Verify `MONGODB_URI` in Render environment variables
+2. Check MongoDB Atlas database access user permissions
+3. Ensure database `resumeats` exists in MongoDB Atlas
+4. Check Render logs: Dashboard → Logs
+
+### Issue: API Returns 404
+
+**Cause:** Backend API not running or URL incorrect
+
+**Solution:**
+
+- Check Render is running: https://resumate-backend-xy8b.onrender.com/api/health
+- Verify frontend uses correct API URL
+
+### Issue: CORS Errors
+
+**Cause:** Frontend and backend origin mismatch
+
+**Solution:**
+
+- Ensure `@CrossOrigin(origins = "*")` is in `ResumeAnalysisController.java`
+- Check Vercel rewrites in `frontend/vercel.json`
+
+### Issue: File Upload Not Working
+
+**Cause:** File size too large (max 8MB)
+
+**Solution:**
+
+- Compress resume PDF
+- Max file size configured in `application.properties`: `spring.servlet.multipart.max-file-size=8MB`
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Kritika** - AI Resume Analyzer & ATS Checker
+
+- GitHub: https://github.com/kritika0519
+- Email: kritika0519@gmail.com
+
+---
+
+## 🙏 Acknowledgments
+
+- Apache PDFBox for PDF handling
+- Google Gemini API for AI suggestions
+- Spring Boot for framework
+- MongoDB for database
+- Vercel & Render for deployment platforms
+
+---
+
+## 📞 Support
+
+If you need help:
+
+1. Check this README's Troubleshooting section
+2. Check GitHub Issues
+3. Review Render logs for backend errors
+4. Review browser console (F12) for frontend errors
+
+---
+
+**Last Updated:** May 24, 2026
+
+**Project Status:** ✅ Production Ready
+
+**Live Demo:** https://resumate-zeta-lac.vercel.app/
